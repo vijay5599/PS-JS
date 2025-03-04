@@ -276,24 +276,49 @@
 //   m = 27;
 // console.log("nthRoot", nthRoot(n, m));
 
-function smallestDivisor(arr, N, limit) {
-  for (let i = 1; i < N; i++) {
-    let ans = 0;
-    for (let j = 0; j < N; j++) {
-      ans += Math.ceil(arr[j] / i);
-    }
-    console.log(ans);
-    if (ans <= limit) {
-      return i;
+var smallestDivisor = function (nums, threshold) {
+  let l = 1, h = Math.max(...nums)
+
+  let res = Number.MAX_SAFE_INTEGER
+  while(l <= h){
+    let mid = Math.floor((l+h)/2)
+    let sum = sumByD(nums, mid)
+    console.log(sum);
+    if(sum <= threshold){
+      res = Math.min(res, mid)
+      h = mid - 1     
+    }else{
+      l = mid + 1
     }
   }
+  return res
+      
+}
+function sumByD(nums, mid){
+  let sum = 0;
+  for (let j = 0; j < nums.length; j++) {
+    sum += Math.ceil(nums[j] / mid);
+  }
+  return sum
 }
 
-// let arr = [1, 2, 3, 4, 5],
-//   N = arr.length,
-//   limit = 8;
-let N = 4,
-  arr = [1, 2, 5, 9],
-  limit = 6;
+// function smallestDivisor(nums, threshold){
+//   let maxNum = Math.max(...nums)
+//   for(let i = 1; i < maxNum; i++){
+//     let sum = 0
+//     for(let j = 0; j < nums.length; j++){
+//         sum += Math.ceil(nums[j]/ i)
+//     }
+//     if(sum <= threshold) return i 
+//   }
+//   return -1
+// }
 
-console.log("smallestDivisor", smallestDivisor(arr, N, limit));
+// let nums = [1, 2, 3, 4, 5], threshold = 8;
+let  nums = [1,2,5,9], threshold = 6
+// let  nums = [21212,10101,12121], threshold = 1000000
+
+console.log("smallestDivisor", smallestDivisor(nums, threshold));
+// Output: 5
+// Explanation: We can get a sum to 17 (1+2+5+9) if the divisor is 1. 
+// If the divisor is 4 we can get a sum of 7 (1+1+2+3) and if the divisor is 5 the sum will be 5 (1+1+1+2)
