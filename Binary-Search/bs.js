@@ -276,24 +276,102 @@
 //   m = 27;
 // console.log("nthRoot", nthRoot(n, m));
 
-function smallestDivisor(arr, N, limit) {
-  for (let i = 1; i < N; i++) {
-    let ans = 0;
-    for (let j = 0; j < N; j++) {
-      ans += Math.ceil(arr[j] / i);
-    }
-    console.log(ans);
-    if (ans <= limit) {
-      return i;
-    }
-  }
-}
+// function smallestDivisor(nums, N, limit) {
+//   let maxNum = Math.max(...nums);
+//   for (let i = 1; i < maxNum; i++) {
+//     let ans = 0;
+//     for (let j = 0; j < N; j++) {
+//       ans += Math.ceil(arr[j] / i);
+//     }
+//     if (ans <= limit) {
+//       return i;
+//     }
+//   }
+// }'
+
+// function smallestDivisor(nums, limit) {
+//   let l = 1,
+//     h = Math.max(...nums);
+//   let res = Number.MAX_SAFE_INTEGER;
+//   while (l <= h) {
+//     let mid = Math.floor((l + h) / 2);
+//     let sum = sumByMid(nums, mid);
+//     if (sum <= limit) {
+//       res = Math.min(res, mid);
+//       h = mid - 1;
+//     } else {
+//       l = mid + 1;
+//     }
+//     return res;
+//   }
+// }
+// function sumByMid(nums, mid) {
+//   let sum = 0;
+//   for (let i = 0; i < nums.length; i++) {
+//     sum += Math.ceil(nums[i] / mid);
+//   }
+//   return sum;
+// }
 
 // let arr = [1, 2, 3, 4, 5],
-//   N = arr.length,
 //   limit = 8;
-let N = 4,
-  arr = [1, 2, 5, 9],
-  limit = 6;
+// // let
+// //   arr = [1, 2, 5, 9],
+// //   limit = 6;
 
-console.log("smallestDivisor", smallestDivisor(arr, N, limit));
+// console.log("smallestDivisor", smallestDivisor(arr, limit));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
