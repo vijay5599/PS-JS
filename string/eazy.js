@@ -76,26 +76,134 @@
 // // Output: "fl"
 // console.log(longestCommonPrefix(strs));
 
-var isIsomorphic = function (s, t) {
-  if (s.length !== t.length) return false;
-  let mapS = new Map();
-  let mapT = new Map();
-  for (let i = 0; i < s.length; i++) {
-    let charS = s[i];
-    let charT = t[i];
-    if (mapS.has(charS) && mapS.get(charS) !== charT) return false;
-    if (mapT.has(charT) && mapT.get(charT) !== charS) return false;
-    mapS.set(charS, charT);
-    mapT.set(charT, charS);
-    console.log(mapS, mapT);
-  }
+// var isIsomorphic = function (s, t) {
+//   if (s.length !== t.length) return false;
+//   let mapS = new Map();
+//   let mapT = new Map();
+//   for (let i = 0; i < s.length; i++) {
+//     let charS = s[i];
+//     let charT = t[i];
+//     if (mapS.has(charS) && mapS.get(charS) !== charT) return false;
+//     if (mapT.has(charT) && mapT.get(charT) !== charS) return false;
+//     mapS.set(charS, charT);
+//     mapT.set(charT, charS);
+//     console.log(mapS, mapT);
+//   }
 
-  return true;
+//   return true;
+// };
+
+// let s = "egg",
+//   t = "add";
+// let s1 = "foo",
+//   t1 = "bar";
+// console.log(isIsomorphic(s, t));
+// console.log(isIsomorphic(s1, t1));
+
+// var frequencySort = function (s) {
+//   let feqMap = new Map();
+//   let result = "";
+//   for (let i = 0; i < s.length; i++) {
+//     feqMap.set(s[i], (feqMap.get(s[i]) || 0) + 1);
+//   }
+//   let sortedMap = Array.from(feqMap.entries()).sort((a, b) => b[1] - a[1]);
+//   for (let [key, value] of sortedMap) {
+//     result += key.repeat(value);
+//   }
+//   return result;
+// };
+
+// let s = "tree";
+// console.log(frequencySort(s));
+
+// Symbol       Value
+// I             1
+// V             5
+// X             10
+// L             50
+// C             100
+// D             500
+// M             1000
+
+// var romanToInt = function (s) {
+//   const romanToIntMap = {
+//     I: 1,
+//     V: 5,
+//     X: 10,
+//     L: 50,
+//     C: 100,
+//     D: 500,
+//     M: 1000,
+//   };
+//   let res = 0;
+//   let prev = 0;
+//   for (let i = s.length - 1; i >= 0; i--) {
+//     let curr = romanToIntMap[s[i]];
+//     if (prev > curr) {
+//       res -= curr;
+//     } else {
+//       res += curr;
+//     }
+//   }
+//   return res;
+// };
+
+// let s = "LVIII";
+// console.log(romanToInt(s));
+
+// var maxDepth = function (s) {
+//   if (s === "") return 0;
+//   if (!s.includes("(")) return 0;
+//   let cnt = 0;
+//   let maxD = Number.MIN_SAFE_INTEGER;
+//   for (let i = 0; i < s.length; i++) {
+//     if (s[i] === "(") {
+//       cnt++;
+//       maxD = Math.max(maxD, cnt);
+//     } else if (s[i] === ")") cnt--;
+//   }
+//   return maxD;
+// };
+
+// let str = "(1)+((2))+(((3)))";
+// console.log(maxDepth(str));
+// let str1 = "2";
+// console.log(maxDepth(str1));
+
+// var isAnagram = function (s1, s2) {
+//   if (s1.length !== s1.length) return false;
+//   let freqMap = new Map();
+//   for (let i = 0; i <= s1.length; i++) {
+//     let charS1 = s1[i];
+//     let charS2 = s2[i];
+//     freqMap.set(s1[i], (freqMap.get(charS1) || 0) + 1);
+//     freqMap.set(s2[i], (freqMap.get(charS2) || 0) - 1);
+//   }
+//   for (let count of freqMap.values()) {
+//     if (count !== 0) return false;
+//   }
+//   return true;
+// };
+
+// let s1 = "RULES",
+//   s2 = "LESRT";
+// console.log(isAnagram(s1, s2));
+
+// var rotateString = function (s, goal) {
+//   let rotated = s;
+//   let foundRes = false;
+//   for (let i = 0; i < s.length; i++) {
+//     rotated = rotated.slice(1) + rotated[0];
+//     if (rotated === goal) foundRes = true;
+//   }
+//   return foundRes ? true : false;
+// };
+var rotateString = function (s, goal) {
+  if (s.length !== goal.length) return false;
+  let str = s.concat(s);
+  return str.includes(goal);
 };
 
-let s = "egg",
-  t = "add";
-let s1 = "foo",
-  t1 = "bar";
-console.log(isIsomorphic(s, t));
-console.log(isIsomorphic(s1, t1));
+let s = "abcde",
+  goal = "abced";
+console.log(rotateString(s, goal));
