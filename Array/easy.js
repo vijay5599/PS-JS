@@ -175,21 +175,37 @@
 // console.log("appearceOnce", appearceOnce(arr));
 // // time complexity will be O(N) + O(M).
 
-function longestSubarray(arr, N, k) {
-    let maxLen = 0;
-    for (let i = 0; i < N; i++) {
-      let sum = 0;
-      for (let j = i; j < N; j++) {
-        sum += arr[j];
-        if (sum === k) {
-          maxLen = Math.max(j - i + 1, maxLen);
-        }
-      }
-    }
-    return maxLen;
+// function longestSubarray(arr, N, k) {
+//     let maxLen = 0;
+//     for (let i = 0; i < N; i++) {
+//       let sum = 0;
+//       for (let j = i; j < N; j++) {
+//         sum += arr[j];
+//         if (sum === k) {
+//           maxLen = Math.max(j - i + 1, maxLen);
+//         }
+//       }
+//     }
+//     return maxLen;
+//   }
+//   let arr = [2, 3, 5],
+//     N = 3,
+//     k = 5;
+//   console.log("longestSubarray", longestSubarray(arr, N, k));
+
+function power(x, n) {
+  function calc_power(x, n) {
+    if (x === 0) return 0;
+    if (n === 0) return 1;
+    let res = calc_power(x, Math.floor(n / 2));
+    res *= res;
+
+    if (n % 2 === 1) return (res *= x);
+
+    return res;
   }
-  let arr = [2, 3, 5],
-    N = 3,
-    k = 5;
-  console.log("longestSubarray", longestSubarray(arr, N, k));
-  
+  let ans = calc_power(x, Math.abs(n));
+  return n >= 0 ? ans : 1 / ans;
+}
+console.log(power(2, 2));
+console.log(power(2, -2));

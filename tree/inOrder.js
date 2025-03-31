@@ -6,31 +6,7 @@ class TreeNode {
   }
 }
 
-function preorderTraversal(root) {
-  if (!root) {
-    return [];
-  }
-
-  const stack = [root];
-  const output = [];
-
-  while (stack.length != 0) {
-    root = stack.pop();
-    if (root) {
-      if (root.right) {
-        stack.push(root.right);
-      }
-
-      if (root.left) {
-        stack.push(root.left);
-      }
-    }
-    output.push(root.val);
-  }
-
-  return output;
-}
-// function preorderTraversal(root) {
+// function inOrder(root) {
 //   const result = [];
 //   function traverse(node) {
 //     if (!node) return;
@@ -49,4 +25,4 @@ root.right = new TreeNode(3);
 root.left.left = new TreeNode(4);
 root.left.right = new TreeNode(5);
 
-console.log(preorderTraversal(root));
+console.log(inOrder(root));
