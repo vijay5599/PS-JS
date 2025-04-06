@@ -175,21 +175,63 @@
 // console.log("appearceOnce", appearceOnce(arr));
 // // time complexity will be O(N) + O(M).
 
-function longestSubarray(arr, N, k) {
-    let maxLen = 0;
-    for (let i = 0; i < N; i++) {
-      let sum = 0;
-      for (let j = i; j < N; j++) {
-        sum += arr[j];
-        if (sum === k) {
-          maxLen = Math.max(j - i + 1, maxLen);
-        }
-      }
-    }
-    return maxLen;
+// function longestSubarray(arr, N, k) {
+//     let maxLen = 0;
+//     for (let i = 0; i < N; i++) {
+//       let sum = 0;
+//       for (let j = i; j < N; j++) {
+//         sum += arr[j];
+//         if (sum === k) {
+//           maxLen = Math.max(j - i + 1, maxLen);
+//         }
+//       }
+//     }
+//     return maxLen;
+//   }
+//   let arr = [2, 3, 5],
+//     N = 3,
+//     k = 5;
+//   console.log("longestSubarray", longestSubarray(arr, N, k));
+
+// function groupAnagrams(strs) {
+//   let map = new Map();
+//   for (const s of strs) {
+//     let sortedS = s.split("").sort().join("");
+//     if (map.has(sortedS)) {
+//       map.get(sortedS).push(s);
+//     } else {
+//       map.set(sortedS, [s]);
+//     }
+//   }
+//   return Array.from(map.values());
+// }
+
+// // Test
+// let strs = ["eat", "tea", "tan", "ate", "nat", "bat"];
+// console.log(groupAnagrams(strs));
+
+// function isAnagram(s, t) {
+//   if (s.length !== t.length) {
+//     return false;
+//   }
+
+//   let sSort = s.split("").sort().join();
+//   let tSort = t.split("").sort().join();
+//   return sSort == tSort;
+// }
+
+function topKFrequent(nums, k) {
+  let map = new Map();
+  let res = [];
+  for (let i = 0; i < nums.length; i++) {
+    map.set(nums[i], (map.get(nums[i]) || 0) + 1);
   }
-  let arr = [2, 3, 5],
-    N = 3,
-    k = 5;
-  console.log("longestSubarray", longestSubarray(arr, N, k));
-  
+  let arr = Array.from(map.entries())
+    .map(([num, freq]) => [freq, parseInt(num)])
+    .sort((a, b) => b[0] - a[0]);
+  // Return top k elements (second element of each pair)
+  return arr.slice(0, k).map((item) => item[1]);
+}
+let nums = [1, 2, 2, 3, 3, 3],
+  k = 2;
+console.log(topKFrequent(nums, k));
