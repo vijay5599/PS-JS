@@ -220,18 +220,50 @@
 //   return sSort == tSort;
 // }
 
-function topKFrequent(nums, k) {
-  let map = new Map();
-  let res = [];
-  for (let i = 0; i < nums.length; i++) {
-    map.set(nums[i], (map.get(nums[i]) || 0) + 1);
+// function topKFrequent(nums, k) {
+//   let map = new Map();
+//   let res = [];
+//   for (let i = 0; i < nums.length; i++) {
+//     map.set(nums[i], (map.get(nums[i]) || 0) + 1);
+//   }
+//   let arr = Array.from(map.entries())
+//     .map(([num, freq]) => [freq, parseInt(num)])
+//     .sort((a, b) => b[0] - a[0]);
+//   // Return top k elements (second element of each pair)
+//   return arr.slice(0, k).map((item) => item[1]);
+// }
+// let nums = [1, 2, 2, 3, 3, 3],
+//   k = 2;
+// console.log(topKFrequent(nums, k));
+
+class encodeDecode {
+  encode(strs) {
+    let res = "";
+    for (let s of strs) {
+      res += s.length + "#" + s;
+    }
+    return res;
   }
-  let arr = Array.from(map.entries())
-    .map(([num, freq]) => [freq, parseInt(num)])
-    .sort((a, b) => b[0] - a[0]);
-  // Return top k elements (second element of each pair)
-  return arr.slice(0, k).map((item) => item[1]);
+  decode(str) {
+    let res = [];
+    let i = 0;
+    while (i < str.length) {
+      let j = i;
+      while (str[j] !== "#") {
+        j++;
+      }
+      let length = parseInt(str.substring(i, j));
+      i = j + 1;
+      j = i + length;
+      res.push(str.substring(i, j));
+      i = j;
+    }
+    return res;
+  }
 }
-let nums = [1, 2, 2, 3, 3, 3],
-  k = 2;
-console.log(topKFrequent(nums, k));
+
+let sol = new encodeDecode();
+let encoded = sol.encode(["neet", "code", "love", "you"]);
+console.log(encoded);
+let decoded = sol.decode(encoded);
+console.log(decoded);
