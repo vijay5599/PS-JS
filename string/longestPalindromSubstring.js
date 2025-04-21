@@ -22,13 +22,13 @@ function longestPalindromeSubstring(str) {
 
 console.log(longestPalindromeSubstring("babad"));
 
-function isPalindrome(str) {
-    // Remove punctuation and extra spaces, convert to lowercase
-    let cleanStr = str.toLowerCase().replace(/[^a-z0-9]/g, '');
-    return cleanStr === cleanStr.split('').reverse().join('');
-}
+// function isPalindrome(str) {
+//     // Remove punctuation and extra spaces, convert to lowercase
+//     let cleanStr = str.toLowerCase().replace(/[^a-z0-9]/g, '');
+//     return cleanStr === cleanStr.split('').reverse().join('');
+// }
 
-// Test cases
-console.log(isPalindrome("Was it a car or a cat I saw?")); // true
-console.log(isPalindrome("hello world")); // false
-console.log(isPalindrome("A man, a plan, a canal: Panama")); // true
+// // Test cases
+// console.log(isPalindrome("Was it a car or a cat I saw?")); // true
+// console.log(isPalindrome("hello world")); // false
+// console.log(isPalindrome("A man, a plan, a canal: Panama")); // true
