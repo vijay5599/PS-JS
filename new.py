@@ -34,3 +34,18 @@ def smallest_with_substring(word, substr):
             candidates.append(final)
 
     return min(candidates) if candidates else "-1"
+
+
+def find_pairs_with_sum(nums, target):
+    seen = set()
+    pairs = set()
+
+    for num in nums:
+        complement = target - num
+        if complement in seen:
+            # Use tuple with sorted to avoid (4,2) and (2,4) both being counted
+            pairs.add(tuple(sorted((num, complement))))
+        seen.add(num)
+
+    return list(pairs)
+
